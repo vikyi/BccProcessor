@@ -11,3 +11,5 @@
 
 [ReinForce] Summer Day's Dream 4 (BDRip 1920x1080 x264 FLAC).ass
 
+目前尚未解决的问题：
+bcc格式在同一个时间点通过\n输入多人的台词时，会被解析成第一个人说的带有\n的整个字符串，须手动调整
