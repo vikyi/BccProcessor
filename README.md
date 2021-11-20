@@ -7,7 +7,7 @@
 
 3.txt为供自己阅读的格式
 
-附：自己简单制作的匹配[ReinForce] Summer Day's Dream 4 (BDRip 1920x1080 x264 FLAC)组的梦想夏乡4的ass文件（有几句由于bcc未翻译所以缺失），本体于天雪下载
+附：自己简单制作的匹配[ReinForce] Summer Day's Dream 4 (BDRip 1920x1080 x264 FLAC)组的梦想夏乡4的ass文件，翻译使用此bcc文件（有几句台词由于bcc未翻译所以缺失），为自己调轴，视频文件本体于天雪下载
 
 [ReinForce] Summer Day's Dream 4 (BDRip 1920x1080 x264 FLAC).ass
 
