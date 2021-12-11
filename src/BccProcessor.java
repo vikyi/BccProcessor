@@ -1,12 +1,16 @@
 import java.io.*;
 
+/**
+ * @author vikyi
+ */
 public class BccProcessor {
     public static void main(String[] args) throws IOException {
         long startTime = System.currentTimeMillis();
 
         FileReader fr = new FileReader("src/1.bcc");
         BufferedReader br = new BufferedReader(fr);
-        String s = br.readLine(); // 下载的bcc原文件只有一行
+        // 下载的bcc原文件只有一行
+        String s = br.readLine();
         FileWriter fw = new FileWriter("src/2.txt");
         BufferedWriter bw = new BufferedWriter(fw);
         String[] result = s.split("},\\{");
@@ -33,22 +37,34 @@ public class BccProcessor {
         System.out.println(endTime - startTime);
     }
 
-    //    计算每句台词开始/结束时间
+    /**
+     * @param d bcc的时间轴
+     * @return ass格式的时间
+     */
     static StringBuilder cal(double d) {
-        StringBuilder sb = new StringBuilder();
+        int intTen = 10;
+        double doubleTen = 10.0;
         int min = (int) d / 60;
         int hour = min / 60;
         double sec = d - min * 60 + 2.0;
         sec = (double) Math.round(sec * 100) / 100;
+        StringBuilder sb = new StringBuilder();
         sb.append(hour).append(":");
-        if (min < 10)
-            sb.append("0"); // 一位数的分补0
+        if (min < intTen){
+            //一位数的分补0
+            sb.append("0");
+        }
         sb.append(min).append(":");
-        if (sec < 10.0)
-            sb.append("0"); // 一位数的秒补0
+        if (sec < doubleTen){
+            //一位数的秒补0
+            sb.append("0");
+        }
         sb.append(sec);
-        if (sb.length() != 10)
-            sb.append("0"); // 整数的毫秒补0
+        if (sb.length() != intTen){
+            //整数的毫秒补0
+            sb.append("0");
+        }
+
         return sb;
     }
 
@@ -59,16 +75,17 @@ public class BccProcessor {
         data = result.split(",");
         double from = Double.parseDouble(data[0].substring(7));
         double to = Double.parseDouble(data[1].substring(5));
-//        一种便于阅读的格式输出
-//        sb.append(cal(from)).append("——").append(cal(to)).append("  ")
-//                .append(data[3].substring(11, data[3].length() - 1));
+        //一种便于阅读的格式输出
+        //sb.append(cal(from)).append("——").append(cal(to)).append("  ")
+        //        .append(data[3].substring(11, data[3].length() - 1));
 
-//        处理成.ass格式，可直接复制
+        //处理成.ass格式，可直接复制
         script.append(data[3].substring(11, data[3].length() - 1));
         sb.append("Dialogue: 0,").append(cal(from)).append(",")
                 .append(cal(to)).append(",");
         int index = script.indexOf("：");
-        if (index != -1) { // 字幕中有冒号时，会设置字幕格式为冒号前的人物名（须自己再设置对应字体格式）
+        // 字幕中有冒号时，会设置字幕格式为冒号前的人物名（须自己再设置对应字体格式）
+        if (index != -1) {
             sb.append(script.substring(0, index));
             sb.append(",,0,0,0,,");
             sb.append(script.substring(index + 1));
